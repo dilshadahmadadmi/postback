@@ -1,6 +1,9 @@
 CREATE TABLE IF NOT EXISTS gee_postback (
   gee_unique int(10) unsigned NOT NULL,
-  gee_postback varchar(200) NOT NULL,
+  gee_postback varchar(250) NOT NULL,
+  gee_free1 varchar(250) NOT NULL,
+  gee_free2 varchar(250) NOT NULL,
+  gee_free3 varchar(250) NOT NULL,
   gee_idapp int(10) unsigned NOT NULL,
   gee_app varchar(200) NOT NULL,
   gee_ppi decimal(5,2) unsigned NOT NULL DEFAULT '0.00',

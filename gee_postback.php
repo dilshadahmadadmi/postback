@@ -4,6 +4,9 @@ require_once('gee_config.php');
 // Reset all variables we retrieve from postback
 $gee_unique = 0;
 $gee_postback = null;
+$gee_free1 = null;
+$gee_free2 = null;
+$gee_free3 = null;
 $gee_idapp = 0;
 $gee_app = null;
 $gee_ppi = 0.00;
@@ -20,6 +23,15 @@ if(isset($_GET['gee_unique']) && $_GET['gee_unique']) {
 }
 if(isset($_GET['gee_postback']) && $_GET['gee_postback']) {
 	$gee_postback = filter_var($_GET['gee_postback'], FILTER_SANITIZE_STRING);
+}
+if(isset($_GET['gee_free1']) && $_GET['gee_free1']) {
+	$gee_free1 = filter_var($_GET['gee_free1'], FILTER_SANITIZE_STRING);
+}
+if(isset($_GET['gee_free2']) && $_GET['gee_free2']) {
+	$gee_free2 = filter_var($_GET['gee_free2'], FILTER_SANITIZE_STRING);
+}
+if(isset($_GET['gee_free3']) && $_GET['gee_free3']) {
+	$gee_free3 = filter_var($_GET['gee_free3'], FILTER_SANITIZE_STRING);
 }
 if(isset($_GET['gee_idapp']) && $_GET['gee_idapp']) {
 	$gee_idapp = filter_var($_GET['gee_idapp'], FILTER_SANITIZE_NUMBER_INT);
@@ -62,16 +74,16 @@ $sql_exists = "SELECT gee_unique FROM ".$gee_table." WHERE gee_unique = ".$gee_u
 $res_exists = $gee_con->query($sql_exists);
 if($res_exists->num_rows) {
   // If exists, update the information
-  $sql_update = "UPDATE ".$gee_table." SET gee_postback = '".addslashes($gee_postback)."', gee_idapp = ".$gee_idapp.", gee_app = '".addslashes($gee_app)."', gee_ppi = ".$gee_ppi.", gee_currency = '".addslashes($gee_currency)."', gee_country = '".addslashes($gee_country)."', gee_lang = '".addslashes($gee_lang)."', gee_iddevice = ".$gee_iddevice.", gee_device = '".addslashes($gee_device)."', gee_click = ".$gee_click.", gee_installation = ".$gee_installation." WHERE gee_unique = ".$gee_unique;
+  $sql_update = "UPDATE ".$gee_table." SET gee_postback = '".addslashes($gee_postback)."', gee_free1 = '".addslashes($gee_free1)."', gee_free2 = '".addslashes($gee_free2)."', gee_free3 = '".addslashes($gee_free3)."', gee_idapp = ".$gee_idapp.", gee_app = '".addslashes($gee_app)."', gee_ppi = ".$gee_ppi.", gee_currency = '".addslashes($gee_currency)."', gee_country = '".addslashes($gee_country)."', gee_lang = '".addslashes($gee_lang)."', gee_iddevice = ".$gee_iddevice.", gee_device = '".addslashes($gee_device)."', gee_click = ".$gee_click.", gee_installation = ".$gee_installation." WHERE gee_unique = ".$gee_unique;
   $res_update = $gee_con->query($sql_update);
 } else {
   // If not, add the information
-  $sql_insert = "INSERT INTO ".$gee_table." (gee_unique, gee_postback, gee_idapp, gee_app, gee_ppi, gee_currency, gee_country, gee_lang, gee_iddevice, gee_device, gee_click, gee_installation)
-  VALUES (".$gee_unique.", '".addslashes($gee_postback)."', ".$gee_idapp.", '".addslashes($gee_app)."', ".$gee_ppi.", '".addslashes($gee_currency)."', '".addslashes($gee_country)."', '".addslashes($gee_lang)."', ".$gee_iddevice.", '".addslashes($gee_device)."', ".$gee_click.", ".$gee_installation.")";
+  $sql_insert = "INSERT INTO ".$gee_table." (gee_unique, gee_postback, gee_free1, gee_free2, gee_free3, gee_idapp, gee_app, gee_ppi, gee_currency, gee_country, gee_lang, gee_iddevice, gee_device, gee_click, gee_installation)
+  VALUES (".$gee_unique.", '".addslashes($gee_postback)."', '".addslashes($gee_free1)."', '".addslashes($gee_free2)."', '".addslashes($gee_free3)."', ".$gee_idapp.", '".addslashes($gee_app)."', ".$gee_ppi.", '".addslashes($gee_currency)."', '".addslashes($gee_country)."', '".addslashes($gee_lang)."', ".$gee_iddevice.", '".addslashes($gee_device)."', ".$gee_click.", ".$gee_installation.")";
   $res_insert = $gee_con->query($sql_insert);
 }
 // Unset all variables
-unset($gee_unique, $gee_postback, $gee_idapp, $gee_app, $gee_ppi, $gee_currency, $gee_country, $gee_lang, $gee_iddevice, $gee_device, $gee_click, $gee_installation);
+unset($gee_unique, $gee_postback, $gee_free1, $gee_free2, $gee_free3, $gee_idapp, $gee_app, $gee_ppi, $gee_currency, $gee_country, $gee_lang, $gee_iddevice, $gee_device, $gee_click, $gee_installation);
 unset($sql_exists, $res_exists, $sql_update, $res_update, $sql_insert, $res_insert);
 // Close the connection to database
 $gee_con->close();
